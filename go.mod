@@ -2,4 +2,4 @@ module MiningGame
 
 go 1.27
 
-require github.com/gorilla/mux v1.8.1 // indirect
+require github.com/gorilla/mux v1.8.1

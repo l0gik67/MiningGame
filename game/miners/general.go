@@ -30,6 +30,8 @@ type MinerConfig struct {
 	Progression int
 }
 
+type MinerInfo = MinerConfig
+
 var minerConfigs = map[MinerType]MinerConfig{
 	MinerTypeSmall: {
 		Type:     MinerTypeSmall,
@@ -57,7 +59,15 @@ var minerConfigs = map[MinerType]MinerConfig{
 
 type Miner interface {
 	Run(ctx context.Context) <-chan Coal
-	Info() MinerConfig
+	Info() MinerInfo
+}
+
+func GetMinerTypes() []MinerConfig {
+	return []MinerConfig{
+		minerConfigs[MinerTypeSmall],
+		minerConfigs[MinerTypeNormal],
+		minerConfigs[MinerTypeStrong],
+	}
 }
 
 func CheckAvailabilityOfPayment(minerType MinerType, amount int) error {
